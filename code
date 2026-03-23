@@ -1,0 +1,46 @@
+# --- 1. THE BIG DATABASE ---
+BIO_MARKERS = {
+    "lump": 40,
+    "persistent_cough": 15,
+    "unexplained_weight_loss": 25,
+    "night_sweats": 10,
+    "difficulty_swallowing": 15,
+    "fatigue": 5,
+    "brca1_mutation": 50,
+    "tp53_mutation": 45,
+    "kras_mutation": 40,
+    "high_her2_expression": 30,
+    "high_myc_expression": 35,
+    "skin_change": 20
+}
+
+# --- 2. THE ENGINE (Defining the function) ---
+def check_patient(list_of_symptoms):
+    score = 0
+    for s in list_of_symptoms:
+        if s in BIO_MARKERS:
+            score += BIO_MARKERS[s]
+    return score
+
+# --- 3. THE INTERACTIVE PART ---
+print("--- Cancer Threat Tracker Initialized ---")
+user_findings = []
+
+for symptom in BIO_MARKERS:
+    answer = input(f"Do you have {symptom}? (yes/no): ").lower()
+    if answer == "yes":
+        user_findings.append(symptom)
+
+# --- 4. THE VERDICT ---
+final_score = check_patient(user_findings)
+
+print("\n-----------------------------")
+print(f"TOTAL PATIENT RISK SCORE: {final_score}")
+if final_score >= 70:
+    print("STATUS: HIGH THREAT - PLEASE CONSULT A DOCTOR")
+elif final_score >= 30:
+    print("STATUS: MODERATE RISK - MONITOR CLOSELY")
+else:
+    print("STATUS: LOW RISK")
+print("-----------------------------")
+
