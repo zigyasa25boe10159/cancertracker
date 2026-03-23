@@ -1,31 +1,46 @@
-# cancertracker
-Cancer Threat Tracker: A Python bioinformatics tool assessing risk via weighted biomarkers. Integrates physical symptoms, genetic mutations (BRCA1/TP53), and oncogene activity (HER2). Features an interactive risk engine using dictionaries, loops, and conditional logic to categorize data into Low, Moderate, or High threat levels.
-🛠️ Features
-Weighted Risk Database: Uses a dictionary to assign specific "risk points" to various biomarkers (e.g., brca1_mutation carries more weight than fatigue).
+🧬 Cancer Threat Tracker (PORT)
+📌 Project Overview
+The Personalized Oncogenic Threat Tracker (PORT) is a Python-based diagnostic simulation. It evaluates potential health risks by weighing physical symptoms against high-priority genetic markers and oncogene expression levels.
 
-Interactive Input: A dynamic loop that asks the user to confirm the presence of specific symptoms or known genetic variants.
+This project demonstrates the use of Python dictionaries, modular functions, and interactive loops to transform qualitative patient data into a quantitative risk score.
 
-Risk Engine: A dedicated function that calculates the total score based on biological significance.
+🚀 How to Set Up
+Since this is a lightweight Python script, there are no complex dependencies or external libraries to install.
 
-Instant Verdict: Provides an immediate status report based on the calculated threat score.
+Install Python: Ensure you have Python 3.x installed on your machine. You can download it from python.org.
 
-🧪 Biological Markers Included
-The program tracks three main categories of data:
+Download the Script: Download the cancertracker.py file from this repository.
 
-Physical Symptoms: Lumps, persistent cough, unexplained weight loss, etc.
+Open an Editor: Open the file using IDLE (included with Python) or any code editor like VS Code or PyCharm.
 
-Genetic Mutations: Key tumor suppressors and markers like TP53 and BRCA1.
+💻 How to Use
+Run the Program: In IDLE, open cancertracker.py and press F5, or run the command python cancertracker.py in your terminal/command prompt.
 
-Oncogene Expression: Activity levels of genes like HER2 and MYC.
+Input Symptoms: The program will prompt you with a series of questions regarding symptoms (e.g., "lump") and genetic markers (e.g., "tp53_mutation").
 
-💻 Technical Skills Shown
-Language: Python 3
+Answer Prompts: Type yes or no for each prompt and press Enter.
 
-Data Structures: Dictionaries (HashMaps), Lists
+View Results: After the final question, the engine will calculate your score and display a Risk Status:
 
-Control Flow: For-loops, If-Else statements
+High Threat (70+): Significant red flags detected.
 
-User Interaction: Standard I/O (input/output)
+Moderate Risk (30-69): Multiple indicators present.
+
+Low Risk (<30): Minimal markers found.
+
+📂 Project Structure
+cancertracker.py: The main Python script containing the logic and database.
+
+README.md: Project documentation and setup instructions.
+
+🧬 Scoring Logic
+The program uses a weighted dictionary to prioritize findings:
+
+Genetic Mutations (BRCA1, TP53): 45-50 points (High priority).
+
+Physical Symptoms (Lump, Weight Loss): 25-40 points (Medium priority).
+
+General Symptoms (Fatigue, Night Sweats): 5-10 points (Low priority).
 
 ⚠️ Medical Disclaimer
-This program is for educational and project-building purposes only. It is NOT a medical diagnostic tool. The scores provided are based on hypothetical weights and should not be used to make actual health decisions. Always consult a medical professional for health concerns.
+This project is for educational and programming demonstration purposes only. It is not a medical tool and should not be used for actual health diagnosis. Always consult a medical professional for health concerns.
