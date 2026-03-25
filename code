@@ -1,46 +1,127 @@
-# --- 1. THE BIG DATABASE ---
 BIO_MARKERS = {
+    # --- Physical Symptoms ---
     "lump": 40,
     "persistent_cough": 15,
     "unexplained_weight_loss": 25,
     "night_sweats": 10,
     "difficulty_swallowing": 15,
     "fatigue": 5,
-    "brca1_mutation": 50,
-    "tp53_mutation": 45,
-    "kras_mutation": 40,
-    "high_her2_expression": 30,
-    "high_myc_expression": 35,
-    "skin_change": 20
+    "skin_discoloration": 20,
+    "unusual_bleeding": 35,
+    "new_mole_growth": 30,
+    "chronic_headache": 10,
+    "persistent_bloating": 15,
+    "bone_pain": 20,
+    "vision_changes": 10,
+    "breast_skin_dimpling": 40,
+    # --- Lifestyle & Environmental Factors ---
+    "heavy_smoker": 45,
+    "frequent_alcohol_consumption": 15,
+    "high_processed_meat_diet": 10,
+    "sedentary_lifestyle": 5,
+    "regular_sunbed_use": 30,
+    "exposure_to_asbestos": 40,
+    "family_history_of_cancer": 25,
+    # --- Mental & Neurological Markers ---
+    "persistent_confusion": 20,
+    "personality_changes": 25,
+    "severe_depression_onset": 10,
+    "chronic_insomnia": 5,
+    "frequent_dizziness": 15,
+    "seizures_no_history": 50,
+    "memory_loss_sudden": 30,
+    # --- Emotional & Psychosocial Indicators ---
+    "unexplained_irritability": 10,
+    "sudden_panic_attacks": 15,
+    "emotional_numbness": 10,
+    "feelings_of_impending_doom": 25,
+    "extreme_health_anxiety": 5,
+    "loss_of_interest_apathy": 15,
+    "heightened_sensitivity_to_noise": 5,
+    # --- Dietary & Nutritional Habits ---
+    "high_red_meat_intake": 15,
+    "processed_sugar_dependency": 10,
+    "low_fiber_intake": 15,
+    "frequent_charred_grilled_foods": 20,
+    "chronic_vitamin_d_deficiency": 10,
+    "regular_soda_consumption": 5,
+    "lack_of_fresh_vegetables": 10,
+    "excessive_salt_intake": 5,
+    # --- Hormonal & Metabolic Indicators ---
+    "unusual_thirst_polydipsia": 10,
+    "sudden_heat_intolerance": 15,
+    "unexpected_hair_loss": 10,
+    "chronic_low_blood_sugar": 15,
+    "excessive_night_sweating": 25,
+    "swollen_lymph_nodes_painless": 45,
+    # --- Sensory & Functional Markers ---
+    "persistent_hoarseness": 20,
+    "difficulty_breathing_dyspnea": 30,
+    "unexplained_muscle_weakness": 15,
+    "numbness_in_extremities": 20,
+    "chronic_tinnitus_ringing": 5,
+    "change_in_bowel_habits": 35,
+    # --- Sleep & Recovery Indicators ---
+    "waking_up_unrefreshed": 5,
+    "daytime_hypersomnolence": 10,
+    "frequent_night_terrors": 10,
+    "sleep_apnea_onset": 15,
 }
-
-# --- 2. THE ENGINE (Defining the function) ---
-def check_patient(list_of_symptoms):
+# --- 2. THE RISK ENGINE ---
+def check_patient(findings):
     score = 0
-    for s in list_of_symptoms:
-        if s in BIO_MARKERS:
-            score += BIO_MARKERS[s]
+    for item in findings:
+        if item in BIO_MARKERS:
+            score += BIO_MARKERS[item]
     return score
 
-# --- 3. THE INTERACTIVE PART ---
-print("--- Cancer Threat Tracker Initialized ---")
-user_findings = []
+# --- 3. THE INTERACTIVE INTERFACE ---
+print("--- Welcome to the Cancer Threat Tracker ---")
+print("Please answer 'yes' or 'no' to the following:\n")
 
+user_findings = [] # We start with an empty list (like an empty bag)
+
+# This loop goes through every key in our dictionary
 for symptom in BIO_MARKERS:
+    # We ask the user a question
     answer = input(f"Do you have {symptom}? (yes/no): ").lower()
+    
+    # If they say yes, we add that symptom to our 'bag'
     if answer == "yes":
         user_findings.append(symptom)
 
-# --- 4. THE VERDICT ---
+# Now we run our math function using the symptoms the user typed!
 final_score = check_patient(user_findings)
 
-print("\n-----------------------------")
-print(f"TOTAL PATIENT RISK SCORE: {final_score}")
-if final_score >= 70:
-    print("STATUS: HIGH THREAT - PLEASE CONSULT A DOCTOR")
-elif final_score >= 30:
-    print("STATUS: MODERATE RISK - MONITOR CLOSELY")
+# --- 4. CALCULATING THE TOTAL POSSIBLE SCORE ---
+# This looks at every item in your dictionary and adds them up
+max_score = sum(BIO_MARKERS.values())
+
+# --- 5. THE FINAL REPORT & RECOMMENDATION ---
+print("\n" + "="*40)
+print(f"TOTAL PATIENT RISK SCORE: {final_score} / {max_score}")
+print("="*40)
+
+if final_score >= 100:
+    print("STATUS: CRITICAL THREAT DETECTED")
+    print("ACTION: Visit an Oncologist IMMEDIATELY (within 24-48 hours).")
+elif final_score >= 40:
+    print("STATUS: MODERATE RISK")
+    print("ACTION: Schedule an appointment with a General Physician this week.")
 else:
     print("STATUS: LOW RISK")
-print("-----------------------------")
+    print("ACTION: No immediate action needed. Continue routine checkups.")
+
+# --- 6. INDIA HELPLINE & RESOURCES ---
+if final_score >= 40:
+    print("\n--- 🇮🇳 REGIONAL MEDICAL RESOURCES ---")
+    print("National Cancer Helpline (Toll-Free): 1800-11-2323")
+    print("Tata Memorial Hospital (Mumbai): +91-22-24177000")
+    print("AIIMS Oncology Department (Delhi): +91-11-26588500")
+    print("Kidwai Memorial Institute (Bengaluru): +91-80-26560703")
+    print("\nNote: Please visit the nearest Government Medical College (GMC)")
+    print("or an NCG-affiliated hospital for a professional evaluation.")
+print("="*40)
+
+
 
